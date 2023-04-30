@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repolist</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="flex justify-center">
+        <div class="p-4 w-3/4">
+            <h2 class="font-bold text-xl mb-2 text-center">{{ user_data[7] }}</h2>
+            <div class="border-t border-gray-400 pt-4">
+                <div class="md:flex justify-center gap-5">
+                    <div>
+                        <img src="{{ user_data[0] }}" alt="profile image"
+                            class="rounded-full h-40 hover:scale-[1.05] duration-300 hover:shadow-xl">
+                    </div>
+                    <div class="mt-7 md:my-auto flex flex-col gap-3">
+                        <a href="/logout"
+                            class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded text-sm px-5 py-2.5 text-center mr-2 mb-2 w-full font-bold hover:scale-[1.05] duration-300">Logout</a>
+
+                        <a href="/download"
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded items-center text-center flex justify-center hover:scale-[1.05] duration-300">
+                            <div class="flex gap-1">
+                                <svg class="fill-current w-full h-4 mr-2 my-auto" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                                </svg>
+                                <span>Download</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:flex items-center mb-2 mt-10">
+                    <div class="w-1/4 text-gray-600">Owner ID:</div>
+                    <div class="w-3/4">{{ user_data[6] }}</div>
+                </div>
+                <div class="md:flex items-center mb-2">
+                    <div class="w-1/4 text-gray-600">Username:</div>
+                    <div class="w-3/4">{{ user_data[3] }}</div>
+                </div>
+                <div class="md:flex items-center mb-2">
+                    <div class="w-1/4 text-gray-600">Email:</div>
+                    <div class="w-3/4">{{ user_data[5] if user_data[5]|length > 1 else NULL }}</div>
+                </div>
+                <div class="md:flex items-center mb-2">
+                    <div class="w-1/4 text-gray-600">Bio:</div>
+                    <div class="w-3/4">{{ user_data[4] }}</div>
+                </div>
+                <div class="md:flex items-center mb-2">
+                    <div class="w-1/4 text-gray-600">Followers Count:</div>
+                    <div class="w-3/4">{{ user_data[1] }}</div>
+                </div>
+                <div class="md:flex items-center mb-2">
+                    <div class="w-1/4 text-gray-600">Following Count:</div>
+                    <div class="w-3/4">{{ user_data[2] }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-7">
+        <div class="flex justify-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {% for row in repo_results %}
+                {% set repo_id, repo_name, repo_status, repo_stars, repo_forks = row %}
+                <div class="bg-white border border-gray-300 rounded-lg p-4 hover:scale-[1.05] duration-500">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-medium text-gray-900">{{ repo_name }}</h3>
+                        <span
+                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize">{{
+                            repo_status }}</span>
+                    </div>
+                    <p class="text-sm text-gray-500">{{ repo_id }}</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">{{ repo_stars }} stars</p>
+                        <p class="text-sm text-gray-500">{{ repo_forks }} forks</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
