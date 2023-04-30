@@ -17,7 +17,7 @@ This application was made using **HTML, Tailwind CSS, Flask, GitHub API and Post
 In the project directory, you can run:
 
 ```bash
-python app.py
+python main.py
 ```
 
 Open <http://localhost:5000> to view it in your browser.
